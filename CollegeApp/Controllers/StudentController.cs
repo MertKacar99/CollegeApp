@@ -17,14 +17,11 @@ namespace CollegeApp.Controllers
         }
 
         [HttpGet]       
-        [Route("{id}:int",Name = "GetStudentById")]
+        [Route("{id:int}",Name = "GetStudentById")]
         public Student GetStudentById(int id)
         {
             return CollegeRepository.Students.Where(x => x.Id == id).FirstOrDefault();
         }
-
-        
-
         [HttpGet]
         [Route("{name:alpha}",Name = "GetStudentByName")]
         public Student GetStudentByName(string name)
