@@ -30,3 +30,4 @@ C:\Projeler\c#\CollegeApp\CollegeApp\obj\Debug\net8.0\refint\CollegeApp.dll
 C:\Projeler\c#\CollegeApp\CollegeApp\obj\Debug\net8.0\CollegeApp.pdb
 C:\Projeler\c#\CollegeApp\CollegeApp\obj\Debug\net8.0\CollegeApp.genruntimeconfig.cache
 C:\Projeler\c#\CollegeApp\CollegeApp\obj\Debug\net8.0\ref\CollegeApp.dll
+C:\Projeler\c#\CollegeApp\CollegeApp\obj\Debug\net8.0\CollegeApp.sourcelink.json

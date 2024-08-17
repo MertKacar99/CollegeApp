@@ -3,9 +3,12 @@ namespace CollegeApp.Models
     public class Student
     {
         public int Id { get; set; }
-        public string StudentName { get; set; }
-        public string Address { get; set; }
-        public int MyProperty { get; set; }
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
+        public string? email { get; set; }
+        public int? BirthYear { get; set; }
+        public string? Address { get; set; }
+
     
     
     

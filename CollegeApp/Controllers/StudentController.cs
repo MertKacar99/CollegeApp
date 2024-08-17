@@ -1,4 +1,5 @@
 using CollegeApp.Models;
+using CollegeApp.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CollegeApp.Controllers
@@ -11,26 +12,14 @@ namespace CollegeApp.Controllers
         [HttpGet("GetStudentName")]
         public IEnumerable<Student> GetStudentStudent()
         {
-            return new List<Student>{
-                new Student
-                {
-                    Id = 1,
-                    Name = "Ahmet",
-                    Surname = "Yılmaz",
-                    email = "ahmet@yılmaz.com",
-                    BirthYear = 1999,
-                    Address = "Istanbul"
-                },
-                new Student
-            {
-                Id = 2,
-                Name = "Mehmet",
-                Surname = "Yılmaz",
-                email = "mehmet@yılmaz.com",
-                BirthYear = 1999,
-                Address = "Istanbul"
-            }
-            };
+            return  CollegeRepository.Students; 
+        }
+
+
+        [HttpGet("{id:int}")]
+        public Student GetStudentById(int id)
+        {
+            return CollegeRepository.Students.Where(x => x.Id == id).FirstOrDefault();
         }
     }
 }
