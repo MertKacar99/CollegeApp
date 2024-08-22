@@ -19,6 +19,10 @@ namespace CollegeApp.Controllers
 
         [HttpGet]
         [Route("{id:int}", Name = "GetStudentById")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        
         public ActionResult<Student?> GetStudentById(int id)
         {
             //
@@ -26,14 +30,24 @@ namespace CollegeApp.Controllers
             {
                 return BadRequest();
             }
-            return Ok(CollegeRepository.Students.Where(x => x.Id == id).FirstOrDefault());
+        
+            Student? student =  CollegeRepository.Students.Where(x => x.Id == id).FirstOrDefault();
+            if (student == null){
+                return NotFound($"{id} id numarasına sahip Ogrenci Bulunamadi");
+            }
+            return Ok(student);
+        
         }
         [HttpGet]
         [Route("{name:alpha}", Name = "GetStudentByName")]
         public ActionResult<Student?> GetStudentByName(string name)
         {
             // return CollegeRepository.Students.Where(x => x.Name.ToLower() == name.ToLower()).FirstOrDefault();
-            return Ok(CollegeRepository.Students.Where(x => x.Name == name).FirstOrDefault());
+            Student? student = CollegeRepository.Students.Where(x => x.Name == name).FirstOrDefault();
+            if (student == null){
+                return NotFound( $"{name} isimli Ogrenci Bulunamadi");
+            }
+            return Ok(student);
         }
 
         [HttpPost]
