@@ -13,8 +13,31 @@ namespace CollegeApp.Controllers
         [Route("All", Name = "GetAllStudent")]
         public ActionResult<IEnumerable<Student>> GetStudentStudent()
         {
+            // var students = new List<StudentDto>();
+            // foreach (var item in CollegeRepository.Students){
+            //     StudentDto obj = new StudentDto();
+            //     {
+            //         obj.Id = item.Id;
+            //         obj.Name = item.Name;
+            //         obj.Surname = item.Surname;
+            //         obj.Address = item.Address;
+            //         obj.email = item.email;
+            //         obj.BirthYear = item.BirthYear;
+            //     };
+            //     students.Add(obj);
+            // }
+
+            var students = CollegeRepository.Students.Select(n => new StudentDto()
+            {
+                Id = n.Id,
+                Name = n.Name,
+                Surname = n.Surname,
+                Address = n.Address,
+                email = n.email,
+                BirthYear = n.BirthYear
+            });
             // OK - 200 - SUCCESS
-            return Ok(CollegeRepository.Students);
+            return Ok(students);
         }
 
         [HttpGet]
@@ -23,7 +46,7 @@ namespace CollegeApp.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         
-        public ActionResult<Student?> GetStudentById(int id)
+        public ActionResult<StudentDto?> GetStudentById(int id)
         {
             //
             if (id == 0)
@@ -35,7 +58,18 @@ namespace CollegeApp.Controllers
             if (student == null){
                 return NotFound($"{id} id numarasına sahip Ogrenci Bulunamadi");
             }
-            return Ok(student);
+
+            var studentDto = new StudentDto{
+                Id = student.Id,
+                Name = student.Name,
+                Surname = student.Surname,
+                Address = student.Address,
+                email = student.email,
+                BirthYear = student.BirthYear
+            };                
+            
+
+            return Ok(studentDto);
         
         }
         [HttpGet]
@@ -47,7 +81,16 @@ namespace CollegeApp.Controllers
             if (student == null){
                 return NotFound( $"{name} isimli Ogrenci Bulunamadi");
             }
-            return Ok(student);
+
+                var studentDto = new StudentDto{
+                Id = student.Id,
+                Name = student.Name,
+                Surname = student.Surname,
+                Address = student.Address,
+                email = student.email,
+                BirthYear = student.BirthYear
+            };     
+            return Ok(studentDto);
         }
 
         [HttpPost]
